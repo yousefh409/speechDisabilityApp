@@ -1,39 +1,38 @@
-import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_tts/flutter_tts.dart';
+import 'package:flutter/material.dart';
+import 'button_class.dart';
 
-class Button {
+class Category {
   final String title;
-  final bool isCreatedByUser;
   final String id;
   final String imagePath;
+  final bool isCreatedByUser;
+  final List<Button> members;
 
-  const Button({
+  const Category({
     @required this.title,
     @required this.id,
-    @required this.isCreatedByUser,
     @required this.imagePath,
+    @required this.isCreatedByUser,
+    @required this.members,
   });
 }
 
-void textToSpeech(Button data, FlutterTts flutterTts) async {
-  if (data.title.isNotEmpty && data.title != null) {
-    var result = await flutterTts.speak(data.title);
-  }
+void pushCategoryScreen(BuildContext context, Category category) {
+  Navigator.of(context)
+      .pushNamed("/category_items_screen", arguments: {"category": category});
 }
 
-class ButtonIcon extends StatelessWidget {
-  ButtonIcon({this.buttonData});
+class CategoryIcon extends StatelessWidget {
+  CategoryIcon({this.categoryData});
 
-  final Button buttonData;
-
-  FlutterTts flutterTts = FlutterTts();
+  final Category categoryData;
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        textToSpeech(this.buttonData, flutterTts);
+        pushCategoryScreen(context, categoryData);
       },
       child: Container(
         decoration: BoxDecoration(
@@ -51,7 +50,7 @@ class ButtonIcon extends StatelessWidget {
           children: <Widget>[
             Expanded(
               child: Image.asset(
-                buttonData.imagePath,
+                categoryData.imagePath,
 //              width: 100,
 //              height: 150,
               ),
@@ -59,7 +58,7 @@ class ButtonIcon extends StatelessWidget {
             Center(
               child: Padding(
                 padding: EdgeInsets.all(5),
-                child: Text(buttonData.title),
+                child: Text(categoryData.title),
               ),
             ),
           ],

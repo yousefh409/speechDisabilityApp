@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:learning_disability_app/button_class.dart';
+import 'package:learning_disability_app/category_class.dart';
 import 'action_data.dart';
+import 'category_screen.dart';
 
 void main() => runApp(MyApp());
 
@@ -9,12 +11,14 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Disability App',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: MyHomePage(),
-    );
+        title: 'Disability App',
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+        ),
+        home: MyHomePage(),
+        routes: {
+          "/category_items_screen": (ctx) => CategoryScreen(),
+        });
   }
 }
 
@@ -30,20 +34,22 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text("Home"),
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: <Widget>[
-            Center(child: Wrap(
-              direction: Axis.horizontal,
-              spacing: 10.0,
-              children: <Widget>[
-                for (var action in actionData) Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: ButtonIcon(buttonData: action,),
-                ),
-              ],
-            ),),
-          ],
+      body: GridView(
+        padding: const EdgeInsets.all(25),
+        children: <Widget>[
+          for (var action in categoryData)
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: CategoryIcon(
+                categoryData: action,
+              ),
+            ),
+        ],
+        gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+          maxCrossAxisExtent: 200,
+          childAspectRatio: 2 / 2,
+          crossAxisSpacing: 20,
+          mainAxisSpacing: 20,
         ),
       ),
     );
