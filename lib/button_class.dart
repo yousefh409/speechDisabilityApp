@@ -16,6 +16,7 @@ class Button {
   });
 }
 
+//Converts the text that is passed to it to speech
 void textToSpeech(Button data, FlutterTts flutterTts) async {
   if (data.title.isNotEmpty && data.title != null) {
     var result = await flutterTts.speak(data.title);
@@ -23,10 +24,12 @@ void textToSpeech(Button data, FlutterTts flutterTts) async {
 }
 
 class ButtonIcon extends StatelessWidget {
-  ButtonIcon({this.buttonData});
 
+  //Gets the info about the button to use in this screen
+  ButtonIcon({this.buttonData});
   final Button buttonData;
 
+  //An instance of FlutterTts that will be used to convert text to speech
   FlutterTts flutterTts = FlutterTts();
 
   @override

@@ -8,6 +8,8 @@ class CategoryScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
+    //Getting the  arguments that were passed to the class, and using the Category to fill the screen
+    //With the members of that category
     final routeArgs = ModalRoute.of(context).settings.arguments as Map<String, Category>;
     final Category category = routeArgs["category"];
 

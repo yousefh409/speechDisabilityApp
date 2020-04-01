@@ -1,10 +1,11 @@
 import 'button_class.dart';
 import 'category_class.dart';
 
+List<String> quickWords = ["Hi", "How are you doing", "What time is it", "It is over there"];
 List<Category> categoryData = [
   Category(
       title: "People",
-      imagePath: "assets/images/person.png",
+      imagePath: "assets/images/person.jpg",
       isCreatedByUser: false,
       id: "people",
       members: [
