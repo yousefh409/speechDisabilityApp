@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:learning_disability_app/main_drawer.dart';
+import 'package:provider/provider.dart';
 import 'action_data.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 
@@ -66,11 +67,11 @@ class _KeyboardScreen extends State<KeyboardScreen> {
         child: Column(
           children: <Widget>[
             Container(
-              height: MediaQuery.of(context).size.height * (1 / 4),
+              height: MediaQuery.of(context).size.height * (1 / 3),
               child: GridView(
                 padding: const EdgeInsets.all(25),
                 children: <Widget>[
-                  for (var word in quickWords)
+                  for (var word in Provider.of<AppData>(context).quickWords)
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: QuickAction(

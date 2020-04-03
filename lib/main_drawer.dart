@@ -56,6 +56,12 @@ class MainDrawer extends StatelessWidget {
           buildListTile('Keyboard', Icons.keyboard, () {
             Navigator.of(context).pushNamed("/keyboard_screen");
           }),
+          buildListTile('Account Info', Icons.account_circle, () {
+            Navigator.of(context).pushNamed("/account_screen_signed_out");
+          }),
+          buildListTile('Add Action', Icons.add, () {
+            Navigator.of(context).pushNamed("/add_action_screen");
+          }),
         ],
       ),
     );

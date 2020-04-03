@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_tts/flutter_tts.dart';
@@ -24,9 +26,9 @@ void textToSpeech(Button data, FlutterTts flutterTts) async {
 }
 
 class ButtonIcon extends StatelessWidget {
-
   //Gets the info about the button to use in this screen
   ButtonIcon({this.buttonData});
+
   final Button buttonData;
 
   //An instance of FlutterTts that will be used to convert text to speech
@@ -53,11 +55,17 @@ class ButtonIcon extends StatelessWidget {
         child: Column(
           children: <Widget>[
             Expanded(
-              child: Image.asset(
-                buttonData.imagePath,
+              child: buttonData.isCreatedByUser
+                  ? Image(
+                      image: FileImage(
+                        File(buttonData.imagePath),
+                      ),
+                    )
+                  : Image.asset(
+                      buttonData.imagePath,
 //              width: 100,
 //              height: 150,
-              ),
+                    ),
             ),
             Center(
               child: Padding(
